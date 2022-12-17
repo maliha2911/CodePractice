@@ -10,6 +10,11 @@ public class quickSort {
     }
 
     private static void sort(int[] arr, int low, int high) {
+        // pivot is fixed to mid(optional)
+        // one pointer is fixed to left, another to right, left one will check if a value is less than pivot and
+        //right pointer will check if a value is grater than the pivot
+        //if it finds so, it will be exchanged and pivot will be taken to its position
+        // then recursion will be executed for both its left and right parts
         if(low>=high)
             return;
         int i=low;

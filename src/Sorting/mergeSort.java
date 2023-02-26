@@ -23,7 +23,6 @@ public class mergeSort {
         int i=start;
         int j=mid;
         int k=0;
-
         while(i<mid && j<end){
             if(arr[i]<arr[j]){
                 mix[k]=arr[i];
@@ -48,6 +47,5 @@ public class mergeSort {
         for(int l=0;l<mix.length;l++){
             arr[start+l]=mix[l];
         }
-
     }
 }

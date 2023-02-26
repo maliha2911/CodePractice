@@ -1,3 +1,5 @@
+package LinkedList;
+
 public class LL {
     Node head;
     class Node{
@@ -82,6 +84,30 @@ public class LL {
             lastNode=lastNode.next;
         }
         secondLastNode.next=null;
+    }
+    public Node reverseList(){
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node prev= null;
+        Node curr=head;
+        while(curr!= null){
+            Node next= curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+
+    }
+    public static ListNode getMid(ListNode head){
+        ListNode fast= head;
+        ListNode slow= head;
+        while(fast.next != null && fast.next.next != null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
     public void printLinkedList(){
         if(head==null){

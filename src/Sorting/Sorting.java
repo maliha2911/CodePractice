@@ -40,8 +40,8 @@ public class Sorting {
         return arr;
     }
     //insertion sort-from index 1, divided into two parts sorter and unsorted.
-    // each element selected from unsorted part will be compared to the sorted part and to find with which index its smaller
-    // to, and be placed at that position
+    // each element selected from unsorted part will be compared to the sorted part and to find with
+    // which index its smaller to, and be placed at that position
     public  static int[] insertionSort(int[] arr){
         for(int i=1;i<arr.length; i++){
             int current=arr[i];

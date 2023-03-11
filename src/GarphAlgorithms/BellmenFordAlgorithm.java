@@ -1,10 +1,12 @@
 package GarphAlgorithms;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
-//greedy
-// O(V +  ElogV)
-public class DijkstraAlgorithm {
+
+// edges er weight negative hoile, bellmenfor lagbe
+//dynamic programming
+//O(V * E)
+public class BellmenFordAlgorithm {
+
     public static class Edge{
         int src;
         int dest;
@@ -33,7 +35,7 @@ public class DijkstraAlgorithm {
         graph[4].add(new Edge(4, 5, 5));
 
     }
-    public static class Pair implements Comparable<Pair>{
+    public static class Pair implements Comparable<DijkstraAlgorithm.Pair>{
         int node;
         int dist;
         public Pair(int n, int d){
@@ -42,46 +44,36 @@ public class DijkstraAlgorithm {
         }
 
         @Override
-        public int compareTo(Pair p) {
+        public int compareTo(DijkstraAlgorithm.Pair p) {
             return this.dist-p.dist;
         }
     }
-    public static int[] dijkstra(ArrayList<Edge>graph[], int source){
-        PriorityQueue<Pair> pq= new PriorityQueue<>();
-        int[] dist= new int[graph.length];
-        boolean[] visited=new boolean[graph.length];
-
-        pq.add(new Pair(source, 0));
-
+    public static int[] bellmenford(ArrayList<Edge> graph[], int source){
+        int [] dist= new int[graph.length];
         for(int i=0; i< dist.length; i++){
-            if(i!= source)
-               dist[i]= Integer.MAX_VALUE;
+            if(i!= source){
+                dist[i]= Integer.MAX_VALUE;
+            }
         }
-
-        while(!pq.isEmpty()){
-            Pair curr= pq.remove();
-            if(!visited[curr.node]){
-                visited[curr.node]= true;
-                for(int i=0; i<graph[curr.node].size(); i++){
-                    Edge e= graph[curr.node].get(i);
+        for(int i=0; i< graph.length; i++){
+            for( int j=0; j< graph.length; j++){
+                for (int k=0; k< graph[j].size(); k++){
+                    Edge e= graph[j]. get(k);
                     int u= e.src;
                     int v= e.dest;
-                    if(!visited[v] && dist[u]+ e.wt< dist[v]){
+                    if(dist[u] != Integer.MAX_VALUE && dist[u]+ e.wt< dist[v]){
                         dist[v]= dist[u]+ e.wt;
-                        pq.add(new Pair(v, dist[v]));
-
                     }
                 }
             }
         }
-        return dist;
+        return  dist;
     }
-
     public static void main(String[] args) {
         int V=6;
         ArrayList<Edge> graph[]= new ArrayList[V];
         createGraph(graph);
-        int [] ans= dijkstra(graph, 0);
+        int [] ans= bellmenford(graph, 0);
         for(int val: ans){
             System.out.print(val+ " ");
         }

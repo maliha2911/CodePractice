@@ -3,38 +3,50 @@ package Sorting;
 import java.util.Arrays;
 
 public class quickSort {
+    //time complexity : average- O(nlogn), worst case- O(n^2){ sorted array hoile i.e pivot always largest/smallest hoile}
     public static void main(String[] args) {
-        int[] arr={4, 7, 8, 2, 9, 1, 3, 5, 6};
+        int[] arr={6,3,9,5,2,8};
         sort(arr, 0, arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
 
     private static void sort(int[] arr, int low, int high) {
-        // pivot is fixed to mid(optional)
-        // one pointer is fixed to left, another to right, left one will check if a value is less than pivot and
-        //right pointer will check if a value is grater than the pivot
-        //if it finds so, it will be exchanged and pivot will be taken to its position
-        // then recursion will be executed for both its left and right parts
-        if(low>=high)
-            return;
-        int i=low;
-        int j=high;
-        int mid=i+(j-i)/2;
-        int pivot=arr[mid];
-        while(i<=j){
-            while(arr[i]<pivot)
+        if (low < high)
+        {
+            /* pi is partitioning index, arr[pi] is
+              now at right place */
+            int pi = partition(arr, low, high);
+
+            // Recursively sort elements before
+            // partition and after partition
+            sort(arr, low, pi-1);
+            sort(arr, pi+1, high);
+        }
+    }
+    public static int partition(int[]arr, int low, int high){
+        int pivot = arr[high];
+        int i = (low-1); // index of smaller element
+        for (int j=low; j<high; j++)
+        {
+            // If current element is smaller than or
+            // equal to pivot
+            if (arr[j] <= pivot)
+            {
                 i++;
-            while(arr[j]>pivot)
-                j--;
-            if(i<=j){
-                int temp=arr[i];
-                arr[i]=arr[j];
-                arr[j]=temp;
-                i++;
-                j--;
+
+                // swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
-        sort(arr, low, j);
-        sort(arr,i, high);
+
+        // swap arr[i+1] and arr[high] (or pivot)
+        i++;
+        int temp = arr[i];
+        arr[i] = arr[high];
+        arr[high] = temp;
+
+        return i;
     }
 }

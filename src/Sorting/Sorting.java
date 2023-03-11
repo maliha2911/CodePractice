@@ -39,7 +39,7 @@ public class Sorting {
         }
         return arr;
     }
-    //insertion sort-from index 1, divided into two parts sorter and unsorted.
+    //insertion sort-from index 1, divided into two parts sorted and unsorted.
     // each element selected from unsorted part will be compared to the sorted part and to find with
     // which index its smaller to, and be placed at that position
     public  static int[] insertionSort(int[] arr){
@@ -50,6 +50,7 @@ public class Sorting {
                 arr[j+1]=arr[j];
                 j--;
             }
+
             arr[j+1]=current;
         }
         return arr;

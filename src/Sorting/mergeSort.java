@@ -3,12 +3,15 @@ package Sorting;
 import java.util.Arrays;
 
 public class mergeSort {
+    // time complexity always O(nlogn)
+    // extra space lagbe, so space complexity considerable hoile merge sort better than quick sort
     public static void main(String[] args) {
         int[] arr={4, 7, 8, 2, 9, 1, 3, 5, 6};
         sort(arr, 0, arr.length);
         System.out.println(Arrays.toString(arr));
 
     }
+    //jekhane extra space use kora jabe, sekhane merge sort
     public static void sort(int[] arr, int start, int end){
         if(end-start==1){
             return;

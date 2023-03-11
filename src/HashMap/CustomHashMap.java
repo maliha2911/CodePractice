@@ -51,9 +51,9 @@ public class CustomHashMap {
             }
         }
         public void put(K key, V value){
-            int bi= hashFunction(key);
-            int di=searchInLL(key, bi);
-            if(di==-1){
+            int bi= hashFunction(key); //bucket index from hash function
+            int di=searchInLL(key, bi); //index in the linked list
+            if(di==-1){ //key doesnt exist
                 buckets[bi].add(new Node(key, value));
                 n++;
             }

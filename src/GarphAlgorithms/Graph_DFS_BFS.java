@@ -19,11 +19,11 @@ public class Graph_DFS_BFS {
     }
     public void bfs(int source){
         boolean[] isVisited=new boolean[adj.length];
-        int[] parentNodes=new int[adj.length];
+//        int[] parentNodes=new int[adj.length];
         Queue<Integer> q=new LinkedList<>();
         q.add(source);
         isVisited[source]=true;
-        parentNodes[source]=-1;
+//        parentNodes[source]=-1;
         while(!q.isEmpty()){
             int val=q.poll();
             System.out.println(val);
@@ -31,30 +31,46 @@ public class Graph_DFS_BFS {
                 if(isVisited[i]==false) {
                     isVisited[i] = true;
                     q.add(i);
-                    parentNodes[i] = val;
+//                    parentNodes[i] = val;
                 }
             }
         }
 
     }
-    public static void dfs(int source){
-        boolean[] isVisited=new boolean[adj.length];
-        int[] parentNodes=new int[adj.length];
-        Stack<Integer> s=new Stack<>();
-        s.add(source);
-        isVisited[source]=true;
-        parentNodes[source]=-1;
-        while(!s.isEmpty()){
-            int val=s.pop();
-            System.out.println(val);
-            for(int i: adj[val]){
-                if(isVisited[i]==false) {
-                    isVisited[i] = true;
-                    s.add(i);
-                    parentNodes[i] = val;
-                }
+//    public static void dfs(int source){
+//        boolean[] isVisited=new boolean[adj.length];
+//        int[] parentNodes=new int[adj.length];
+//        Stack<Integer> s=new Stack<>();
+//        s.add(source);
+//        isVisited[source]=true;
+//        parentNodes[source]=-1;
+//        while(!s.isEmpty()){
+//            int val=s.pop();
+//            System.out.println(val);
+//            for(int i: adj[val]){
+//                if(isVisited[i]==false) {
+//                    isVisited[i] = true;
+//                    s.add(i);
+//                    parentNodes[i] = val;
+//                }
+//            }
+//        }
+//
+//    }
+    public static void dfsUtil(int v, boolean[] isVisited){
+        isVisited[v]= true;
+        System.out.println(v);
+        for(int i=0; i<adj[v].size(); i++){
+            int val= adj[v].get(i);
+            if(isVisited[val]!=true){
+                dfsUtil(val, isVisited);
+
             }
         }
+    }
+    public static void dfs(int source){
+        boolean isVisited[]= new boolean[adj.length];
+        dfsUtil(source, isVisited);
 
     }
 
